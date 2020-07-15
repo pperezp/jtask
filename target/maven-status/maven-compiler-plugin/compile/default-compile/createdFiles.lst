@@ -1,5 +1,8 @@
 cl/prezdev/jtask/App$1.class
-cl/prezdev/jtask/App$2.class
+cl/prezdev/jtask/jpopupmenu/listener/SwitchDoneTaskActionListener.class
+cl/prezdev/jtask/jpopupmenu/listener/RemoveTaskActionListener.class
+cl/prezdev/jtask/jpopupmenu/listener/AddTaskActionListener.class
 cl/prezdev/jtask/model/Task.class
 cl/prezdev/jtask/App.class
 cl/prezdev/jtask/model/TaskTreeModel.class
+cl/prezdev/jtask/service/Services.class

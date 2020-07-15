@@ -54,9 +54,6 @@
               <TreeModel code="Tareas&#xa; Tarea 1&#xa;   sub tarea1&#xa; Tarea 2&#xa;   sub tarea2&#xa;    sub tarea 3"/>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tasksTreeMouseReleased"/>
-          </Events>
         </Component>
       </SubComponents>
     </Container>

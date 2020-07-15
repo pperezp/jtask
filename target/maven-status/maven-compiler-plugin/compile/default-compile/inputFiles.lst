@@ -1,3 +1,7 @@
-/home/prez/Escritorio/test/JTask/src/main/java/cl/prezdev/jtask/model/TaskTreeModel.java
-/home/prez/Escritorio/test/JTask/src/main/java/cl/prezdev/jtask/App.java
-/home/prez/Escritorio/test/JTask/src/main/java/cl/prezdev/jtask/model/Task.java
+/home/prez/Escritorio/java-projects/JTask/src/main/java/cl/prezdev/jtask/App.java
+/home/prez/Escritorio/java-projects/JTask/src/main/java/cl/prezdev/jtask/model/TaskTreeModel.java
+/home/prez/Escritorio/java-projects/JTask/src/main/java/cl/prezdev/jtask/jpopupmenu/listener/SwitchDoneTaskActionListener.java
+/home/prez/Escritorio/java-projects/JTask/src/main/java/cl/prezdev/jtask/jpopupmenu/listener/AddTaskActionListener.java
+/home/prez/Escritorio/java-projects/JTask/src/main/java/cl/prezdev/jtask/model/Task.java
+/home/prez/Escritorio/java-projects/JTask/src/main/java/cl/prezdev/jtask/service/Services.java
+/home/prez/Escritorio/java-projects/JTask/src/main/java/cl/prezdev/jtask/jpopupmenu/listener/RemoveTaskActionListener.java
