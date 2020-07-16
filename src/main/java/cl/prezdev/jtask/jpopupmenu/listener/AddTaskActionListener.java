@@ -13,7 +13,7 @@ public class AddTaskActionListener implements Option {
     
     @Override
     public void actionPerformed(ActionEvent ae) {
-        String taskString = JOptionPane.showInputDialog("Nueva tarea:");
+        String taskString = JOptionPane.showInputDialog("New task:");
         
         if(taskString != null && !taskString.trim().isEmpty()){
             Services.getJTreeService().addNodeToSelectedNode(new Task(taskString.trim()));

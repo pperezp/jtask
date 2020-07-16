@@ -2,6 +2,7 @@ package cl.prezdev.jtask;
 
 import cl.prezdev.jtask.jpopupmenu.listener.AddTaskActionListener;
 import cl.prezdev.jtask.jpopupmenu.listener.RemoveTaskActionListener;
+import cl.prezdev.jtask.jpopupmenu.listener.RenameTaskActionListener;
 import cl.prezdev.jtask.jpopupmenu.listener.SwitchDoneTaskActionListener;
 import cl.prezdev.jtask.model.Task;
 import cl.prezdev.jtask.model.TaskTreeModel;
@@ -9,6 +10,7 @@ import cl.prezdev.jtask.model.TaskTreeRenderer;
 import cl.prezdev.jtask.service.Services;
 import cl.prezdev.util.gui.jpopupmenu.JPopUpMenuService;
 import java.awt.Color;
+import java.awt.Rectangle;
 
 public class App extends javax.swing.JFrame {
     private TaskTreeModel taskTreeModel;
@@ -20,6 +22,7 @@ public class App extends javax.swing.JFrame {
         initTreeModel();
         initServices();
         initPopUpMenu();
+        initWindow();
         
         tasksTree.setCellRenderer(new TaskTreeRenderer());
     }
@@ -76,6 +79,7 @@ public class App extends javax.swing.JFrame {
     private void initPopUpMenu() {
         jPopUpMenuService.addOption(new AddTaskActionListener());
         jPopUpMenuService.addOption(new SwitchDoneTaskActionListener());
+        jPopUpMenuService.addOption(new RenameTaskActionListener());
         jPopUpMenuService.addSeparator();
         jPopUpMenuService.addOption(new RemoveTaskActionListener());
     }
@@ -85,5 +89,11 @@ public class App extends javax.swing.JFrame {
 
         tasksTree.setModel(taskTreeModel);
         tasksTree.setBackground(Color.black);
+    }
+
+    private void initWindow() {
+        this.setTitle("JTask");
+        this.setBounds(new Rectangle(800, 600));
+        this.setLocationRelativeTo(null);
     }
 }

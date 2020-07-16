@@ -10,8 +10,22 @@ public class JTaskTreeService extends JTreeService<Task>{
         super(jtree);
     }
     
+    @Deprecated
     public void switchDone(){
         Task selectedNode = super.getSelectedNode();
         selectedNode.switchDone();
+        super.updateUI();
+    }
+    
+    public void doneTask(){
+        Task selectedNode = super.getSelectedNode();
+        selectedNode.setDone(true);
+        super.updateUI();
+    }
+    
+    public void undoneTask(){
+        Task selectedNode = super.getSelectedNode();
+        selectedNode.setDone(false);
+        super.updateUI();
     }
 }

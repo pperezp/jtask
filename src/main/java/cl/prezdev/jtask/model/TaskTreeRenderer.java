@@ -1,5 +1,6 @@
 package cl.prezdev.jtask.model;
 
+import cl.prezdev.jtask.jpopupmenu.config.Config;
 import cl.prezdev.util.gui.jlabel.JLabelUtils;
 import java.awt.Color;
 import java.awt.Component;
@@ -18,22 +19,34 @@ public class TaskTreeRenderer extends JLabel implements TreeCellRenderer{
         
         setName(task.getText());
         setText(task.getText());
+        setBackground(Config.BACKGROUND_COLOR);
+        
+        setForeground(getForegroundColor(task, selected));
+        
+        JLabelUtils.changeFontSize(this, Config.FONT_SIZE);
         
         if(task.isDone()){
             JLabelUtils.applyStrikeThrough(this);
+            JLabelUtils.setItalic(this);
         }else{
             JLabelUtils.takeOutStrikeThrough(this);
-        }
-        
-        this.setBackground(Color.BLACK);
-        
-        if(selected){
-            this.setForeground(Color.yellow);
-        }else{
-            this.setForeground(Color.white);
+            JLabelUtils.removeItalic(this);
         }
         
         return this;
     }
-    
+
+    private Color getForegroundColor(Task task, boolean selected) {
+        if (task.isDone()) {
+            if (selected) {
+                return Config.SELECTED_DONE_TASK_COLOR;
+            } else {
+                return Config.DONE_TASK_COLOR;
+            }
+        } else if (selected) {
+            return Config.TREE_SELECTED_COLOR;
+        } else {
+            return Config.FOREGROUND_COLOR;
+        }
+    }
 }

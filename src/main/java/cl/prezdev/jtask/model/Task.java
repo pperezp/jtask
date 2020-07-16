@@ -25,9 +25,21 @@ public class Task implements ITreeNode<Task>{
         this.done = false;
         this.text = text;
     }
+    
+    public void setDone(boolean done){
+        this.done = done;
+        setDoneChilds(done);
+        
+        if(!done){
+            setUndoneParent();
+        }
+    }
 
+    @Deprecated
     public void switchDone(){
         this.done = !done;
+        
+        switchChildsDone();
     }
     
     @Override
@@ -93,5 +105,29 @@ public class Task implements ITreeNode<Task>{
         }
         
         return this;
+    }
+
+    @Deprecated
+    private void switchChildsDone() {
+        for(Task task : childs){
+            task.switchDone();
+        }
+    }
+
+    private void setDoneChilds(boolean done) {
+        for (Task task : childs) {
+            task.setDone(done);
+        }
+    }
+
+    public void setUndoneParent() {
+        if(this.parent != null){
+            this.parent.setUndone();
+            this.parent.setUndoneParent();
+        }
+    }
+    
+    public void setUndone(){
+        this.done = false;
     }
 }
