@@ -5,14 +5,13 @@ import cl.prezdev.jtask.jpopupmenu.listener.RemoveTaskActionListener;
 import cl.prezdev.jtask.jpopupmenu.listener.SwitchDoneTaskActionListener;
 import cl.prezdev.jtask.model.Task;
 import cl.prezdev.jtask.model.TaskTreeModel;
+import cl.prezdev.jtask.model.TaskTreeRenderer;
 import cl.prezdev.jtask.service.Services;
 import cl.prezdev.util.gui.jpopupmenu.JPopUpMenuService;
-import cl.prezdev.util.gui.jtree.JTreeService;
 import java.awt.Color;
 
 public class App extends javax.swing.JFrame {
     private TaskTreeModel taskTreeModel;
-    private JTreeService<Task> jTreeService;
     private JPopUpMenuService jPopUpMenuService;
     
     public App() {
@@ -21,6 +20,8 @@ public class App extends javax.swing.JFrame {
         initTreeModel();
         initServices();
         initPopUpMenu();
+        
+        tasksTree.setCellRenderer(new TaskTreeRenderer());
     }
     
     @SuppressWarnings("unchecked")
@@ -31,6 +32,7 @@ public class App extends javax.swing.JFrame {
         tasksTree = new javax.swing.JTree();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.LINE_AXIS));
 
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Tareas");
         javax.swing.tree.DefaultMutableTreeNode treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Tarea 1");
@@ -46,22 +48,7 @@ public class App extends javax.swing.JFrame {
         tasksTree.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
         treeScrollPane.setViewportView(tasksTree);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(treeScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 553, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(treeScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 362, Short.MAX_VALUE)
-                .addContainerGap())
-        );
+        getContentPane().add(treeScrollPane);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -83,7 +70,6 @@ public class App extends javax.swing.JFrame {
     private void initServices() {
         Services.initServices(tasksTree);
 
-        jTreeService        = Services.getJTreeService();
         jPopUpMenuService   = Services.getJPopUpMenuService();
     }
 

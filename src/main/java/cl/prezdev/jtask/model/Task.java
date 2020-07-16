@@ -26,6 +26,10 @@ public class Task implements ITreeNode<Task>{
         this.text = text;
     }
 
+    public void switchDone(){
+        this.done = !done;
+    }
+    
     @Override
     public TreeNode getChildAt(int i) {
         return childs.get(i);

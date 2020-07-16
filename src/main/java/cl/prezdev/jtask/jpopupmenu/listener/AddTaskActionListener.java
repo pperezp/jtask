@@ -19,7 +19,6 @@ public class AddTaskActionListener implements Option {
             Services.getJTreeService().addNodeToSelectedNode(new Task(taskString.trim()));
             LOGGER.info("Add task [" + taskString.trim() + "]");
         }
-        
     }
 
     @Override
