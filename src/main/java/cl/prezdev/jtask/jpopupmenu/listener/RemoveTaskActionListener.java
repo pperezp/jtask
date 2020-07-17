@@ -8,8 +8,7 @@ public class RemoveTaskActionListener implements Option {
 
     @Override
     public void actionPerformed(ActionEvent ae) {
-        Services.treeService.removeSelectedNode();
-        Services.taskSaveService.save();
+        Services.taskService.removeTask();
     }
 
     @Override

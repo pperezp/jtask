@@ -5,17 +5,19 @@ import cl.prezdev.util.gui.jpopupmenu.JPopUpMenuService;
 import javax.swing.JTree;
 
 public class Services {
-    public static JPopUpMenuService jPopUpMenuService;
+    public static JPopUpMenuService popUpMenuService;
     public static TaskTreeService treeService;
-    public static TaskSaveService taskSaveService;
+    public static TaskSaveService saveService;
+    public static TaskService taskService;
 
     public Services(){
         throw new IllegalStateException("Utility class");
     }
     
     public static void initServices(JTree jTree){
-        jPopUpMenuService = new JPopUpMenuService(jTree);
+        popUpMenuService = new JPopUpMenuService(jTree);
         treeService = new TaskTreeService(jTree);
-        taskSaveService = new TaskSaveService(Config.SAVE_FILE);
+        saveService = new TaskSaveService(Config.SAVE_FILE);
+        taskService = new TaskService();
     }
 }

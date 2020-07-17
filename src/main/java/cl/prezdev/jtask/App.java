@@ -3,7 +3,11 @@ package cl.prezdev.jtask;
 import cl.prezdev.jtask.jpopupmenu.listener.AddTaskActionListener;
 import cl.prezdev.jtask.jpopupmenu.listener.RemoveTaskActionListener;
 import cl.prezdev.jtask.jpopupmenu.listener.RenameTaskActionListener;
-import cl.prezdev.jtask.jpopupmenu.listener.SwitchDoneTaskActionListener;
+import cl.prezdev.jtask.jpopupmenu.listener.ChangeTaskStatusActionListener;
+import cl.prezdev.jtask.jtree.listeners.AddTaskKeyAdapter;
+import cl.prezdev.jtask.jtree.listeners.ChangeTaskStatusKeyAdapter;
+import cl.prezdev.jtask.jtree.listeners.RemoveTaskKeyAdapter;
+import cl.prezdev.jtask.jtree.listeners.RenameTaskKeyAdapter;
 import cl.prezdev.jtask.model.TaskTreeModel;
 import cl.prezdev.jtask.model.TaskTreeRenderer;
 import cl.prezdev.jtask.service.Services;
@@ -22,6 +26,7 @@ public class App extends javax.swing.JFrame {
         initWindow();
         initTreeModel();
         initTreeCellRenderer();
+        initTreeListeners();
     }
 
     private void initTreeCellRenderer() {
@@ -71,16 +76,16 @@ public class App extends javax.swing.JFrame {
     }
 
     private void initPopUpMenu() {
-        Services.jPopUpMenuService.addOption(new AddTaskActionListener());
-        Services.jPopUpMenuService.addOption(new SwitchDoneTaskActionListener());
-        Services.jPopUpMenuService.addOption(new RenameTaskActionListener());
-        Services.jPopUpMenuService.addSeparator();
-        Services.jPopUpMenuService.addOption(new RemoveTaskActionListener());
+        Services.popUpMenuService.addOption(new AddTaskActionListener());
+        Services.popUpMenuService.addOption(new ChangeTaskStatusActionListener());
+        Services.popUpMenuService.addOption(new RenameTaskActionListener());
+        Services.popUpMenuService.addSeparator();
+        Services.popUpMenuService.addOption(new RemoveTaskActionListener());
     }
 
     private void initTreeModel() {
         try {
-            TaskTreeModel taskTreeModel = Services.taskSaveService.load();
+            TaskTreeModel taskTreeModel = Services.saveService.load();
             tasksTree.setModel(taskTreeModel);
             tasksTree.setBackground(Color.black);
             Services.treeService.expandAllNodes();
@@ -93,5 +98,12 @@ public class App extends javax.swing.JFrame {
         this.setTitle("JTask");
         this.setBounds(new Rectangle(800, 600));
         this.setLocationRelativeTo(null);
+    }
+
+    private void initTreeListeners() {
+        Services.treeService.addKeyAdapter(new AddTaskKeyAdapter());
+        Services.treeService.addKeyAdapter(new RenameTaskKeyAdapter());
+        Services.treeService.addKeyAdapter(new RemoveTaskKeyAdapter());
+        Services.treeService.addKeyAdapter(new ChangeTaskStatusKeyAdapter());
     }
 }
