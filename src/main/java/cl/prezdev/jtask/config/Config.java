@@ -8,7 +8,7 @@ public class Config {
         throw new IllegalStateException("Utility class");
     }
 
-    public static final Integer FONT_SIZE = 16;
+    public static final Integer FONT_SIZE = 12;
     public static final Color BACKGROUND_COLOR = Color.black;
     public static final Color FOREGROUND_COLOR = Color.white;
     public static final Color TREE_SELECTED_COLOR = Color.yellow;

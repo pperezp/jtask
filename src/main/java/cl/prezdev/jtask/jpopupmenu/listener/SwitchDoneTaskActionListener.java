@@ -1,6 +1,5 @@
 package cl.prezdev.jtask.jpopupmenu.listener;
 
-import cl.prezdev.jtask.service.TaskTreeService;
 import cl.prezdev.jtask.service.Services;
 import cl.prezdev.util.gui.jpopupmenu.Option;
 import java.awt.event.ActionEvent;
@@ -10,18 +9,17 @@ public class SwitchDoneTaskActionListener implements Option {
 
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
-        TaskTreeService jTreeService = Services.getTreeService();
         JMenuItem jMenuItem = (JMenuItem) actionEvent.getSource();
         
-        if(Services.getTreeService().getSelectedNode().isDone()){
-            jTreeService.undoneTask();
+        if(Services.treeService.getSelectedNode().isDone()){
+            Services.treeService.undoneTask();
             jMenuItem.setText("Done");
         }else{
-            jTreeService.doneTask();
+            Services.treeService.doneTask();
             jMenuItem.setText("Undone");
         }
         
-        Services.getSaveService().save();
+        Services.taskSaveService.save();
     }
 
     @Override

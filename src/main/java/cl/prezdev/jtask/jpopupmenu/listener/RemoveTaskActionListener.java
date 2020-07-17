@@ -8,13 +8,13 @@ public class RemoveTaskActionListener implements Option {
 
     @Override
     public void actionPerformed(ActionEvent ae) {
-        Services.getTreeService().removeSelectedNode();
-        Services.getSaveService().save();
+        Services.treeService.removeSelectedNode();
+        Services.taskSaveService.save();
     }
 
     @Override
     public String getOptionText() {
-        return "Remote task";
+        return "Remove task";
     }
     
 }

@@ -10,13 +10,13 @@ public class RenameTaskActionListener implements Option {
 
     @Override
     public void actionPerformed(ActionEvent ae) {
-        Task task = Services.getTreeService().getSelectedNode();
+        Task task = Services.treeService.getSelectedNode();
         String newTaskString = JOptionPane.showInputDialog("Rename task:", task.getText());
         
         if(newTaskString != null && !newTaskString.trim().isEmpty()){
             task.setText(newTaskString);
-            Services.getTreeService().updateUI();
-            Services.getSaveService().save();
+            Services.treeService.updateUI();
+            Services.taskSaveService.save();
         }
     }
 

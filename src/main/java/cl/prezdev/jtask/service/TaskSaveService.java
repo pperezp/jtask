@@ -29,7 +29,7 @@ public class TaskSaveService extends SaveService {
     }
     
     public void save() {
-        TaskTreeModel taskTreeModel = (TaskTreeModel) Services.getTreeService().getTreeModel();
+        TaskTreeModel taskTreeModel = (TaskTreeModel) Services.treeService.getTreeModel();
         Task taskRoot = (Task) taskTreeModel.getRoot();
 
         try {

@@ -7,14 +7,12 @@ import cl.prezdev.jtask.jpopupmenu.listener.SwitchDoneTaskActionListener;
 import cl.prezdev.jtask.model.TaskTreeModel;
 import cl.prezdev.jtask.model.TaskTreeRenderer;
 import cl.prezdev.jtask.service.Services;
-import cl.prezdev.util.gui.jpopupmenu.JPopUpMenuService;
 import java.awt.Color;
 import java.awt.Rectangle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class App extends javax.swing.JFrame {
-    private transient JPopUpMenuService jPopUpMenuService;
     
     public App() {
         initComponents();
@@ -70,23 +68,22 @@ public class App extends javax.swing.JFrame {
 
     private void initServices() {
         Services.initServices(tasksTree);
-
-        jPopUpMenuService   = Services.getJPopUpMenuService();
     }
 
     private void initPopUpMenu() {
-        jPopUpMenuService.addOption(new AddTaskActionListener());
-        jPopUpMenuService.addOption(new SwitchDoneTaskActionListener());
-        jPopUpMenuService.addOption(new RenameTaskActionListener());
-        jPopUpMenuService.addSeparator();
-        jPopUpMenuService.addOption(new RemoveTaskActionListener());
+        Services.jPopUpMenuService.addOption(new AddTaskActionListener());
+        Services.jPopUpMenuService.addOption(new SwitchDoneTaskActionListener());
+        Services.jPopUpMenuService.addOption(new RenameTaskActionListener());
+        Services.jPopUpMenuService.addSeparator();
+        Services.jPopUpMenuService.addOption(new RemoveTaskActionListener());
     }
 
     private void initTreeModel() {
         try {
-            TaskTreeModel taskTreeModel = Services.getSaveService().load();
+            TaskTreeModel taskTreeModel = Services.taskSaveService.load();
             tasksTree.setModel(taskTreeModel);
             tasksTree.setBackground(Color.black);
+            Services.treeService.expandAllNodes();
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
         }
