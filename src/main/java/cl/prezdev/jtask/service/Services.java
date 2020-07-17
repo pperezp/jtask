@@ -8,6 +8,10 @@ public class Services {
     private static JPopUpMenuService jPopUpMenuService;
     private static TaskTreeService treeService;
     private static TaskSaveService taskSaveService;
+
+    public Services(){
+        throw new IllegalStateException("Utility class");
+    }
     
     public static void initServices(JTree jTree){
         jPopUpMenuService = new JPopUpMenuService(jTree);

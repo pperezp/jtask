@@ -14,8 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class App extends javax.swing.JFrame {
-    private TaskTreeModel taskTreeModel;
-    private JPopUpMenuService jPopUpMenuService;
+    private transient JPopUpMenuService jPopUpMenuService;
     
     public App() {
         initComponents();
@@ -24,10 +23,13 @@ public class App extends javax.swing.JFrame {
         initPopUpMenu();
         initWindow();
         initTreeModel();
-        
+        initTreeCellRenderer();
+    }
+
+    private void initTreeCellRenderer() {
         tasksTree.setCellRenderer(new TaskTreeRenderer());
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -57,13 +59,8 @@ public class App extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public static void main(String args[]) {
-        
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new App().setVisible(true);
-            }
-        });
+    public static void main(String[] args) {
+        java.awt.EventQueue.invokeLater(() -> new App().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -87,7 +84,7 @@ public class App extends javax.swing.JFrame {
 
     private void initTreeModel() {
         try {
-            taskTreeModel = Services.getSaveService().load();
+            TaskTreeModel taskTreeModel = Services.getSaveService().load();
             tasksTree.setModel(taskTreeModel);
             tasksTree.setBackground(Color.black);
         } catch (ClassNotFoundException ex) {

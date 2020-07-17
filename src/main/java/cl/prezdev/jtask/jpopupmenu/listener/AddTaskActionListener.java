@@ -4,12 +4,13 @@ import cl.prezdev.jtask.model.Task;
 import cl.prezdev.jtask.service.Services;
 import cl.prezdev.util.gui.jpopupmenu.Option;
 import java.awt.event.ActionEvent;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class AddTaskActionListener implements Option {
     
-    private final static Logger LOGGER = Logger.getLogger("AddTaskActionListener");
+    private final Logger logger = Logger.getLogger("AddTaskActionListener");
     
     @Override
     public void actionPerformed(ActionEvent ae) {
@@ -17,7 +18,7 @@ public class AddTaskActionListener implements Option {
         
         if(taskString != null && !taskString.trim().isEmpty()){
             Services.getTreeService().addNodeToSelectedNode(new Task(taskString.trim()));
-            LOGGER.info("Add task [" + taskString.trim() + "]");
+            logger.log(Level.INFO, "Add task [{0}]", taskString.trim());
             
             Services.getSaveService().save();
         }
