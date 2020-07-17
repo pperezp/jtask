@@ -4,13 +4,14 @@ import cl.prezdev.jtask.jpopupmenu.listener.AddTaskActionListener;
 import cl.prezdev.jtask.jpopupmenu.listener.RemoveTaskActionListener;
 import cl.prezdev.jtask.jpopupmenu.listener.RenameTaskActionListener;
 import cl.prezdev.jtask.jpopupmenu.listener.SwitchDoneTaskActionListener;
-import cl.prezdev.jtask.model.Task;
 import cl.prezdev.jtask.model.TaskTreeModel;
 import cl.prezdev.jtask.model.TaskTreeRenderer;
 import cl.prezdev.jtask.service.Services;
 import cl.prezdev.util.gui.jpopupmenu.JPopUpMenuService;
 import java.awt.Color;
 import java.awt.Rectangle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class App extends javax.swing.JFrame {
     private TaskTreeModel taskTreeModel;
@@ -19,10 +20,10 @@ public class App extends javax.swing.JFrame {
     public App() {
         initComponents();
         
-        initTreeModel();
         initServices();
         initPopUpMenu();
         initWindow();
+        initTreeModel();
         
         tasksTree.setCellRenderer(new TaskTreeRenderer());
     }
@@ -85,10 +86,13 @@ public class App extends javax.swing.JFrame {
     }
 
     private void initTreeModel() {
-        taskTreeModel = new TaskTreeModel(new Task("Tareas"));
-
-        tasksTree.setModel(taskTreeModel);
-        tasksTree.setBackground(Color.black);
+        try {
+            taskTreeModel = Services.getSaveService().load();
+            tasksTree.setModel(taskTreeModel);
+            tasksTree.setBackground(Color.black);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     private void initWindow() {

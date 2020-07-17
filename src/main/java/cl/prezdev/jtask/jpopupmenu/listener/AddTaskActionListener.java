@@ -16,8 +16,10 @@ public class AddTaskActionListener implements Option {
         String taskString = JOptionPane.showInputDialog("New task:");
         
         if(taskString != null && !taskString.trim().isEmpty()){
-            Services.getJTreeService().addNodeToSelectedNode(new Task(taskString.trim()));
+            Services.getTreeService().addNodeToSelectedNode(new Task(taskString.trim()));
             LOGGER.info("Add task [" + taskString.trim() + "]");
+            
+            Services.getSaveService().save();
         }
     }
 

@@ -1,6 +1,7 @@
 package cl.prezdev.jtask.model;
 
 import cl.prezdev.util.gui.jtree.ITreeNode;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Enumeration;
@@ -11,7 +12,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter @Setter
-public class Task implements ITreeNode<Task>{
+public class Task implements ITreeNode<Task>, Serializable{
     private String id;
     private boolean done;
     private String text;

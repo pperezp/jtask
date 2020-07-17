@@ -1,6 +1,6 @@
 package cl.prezdev.jtask.model;
 
-import cl.prezdev.jtask.jpopupmenu.config.Config;
+import cl.prezdev.jtask.config.Config;
 import cl.prezdev.util.gui.jlabel.JLabelUtils;
 import java.awt.Color;
 import java.awt.Component;

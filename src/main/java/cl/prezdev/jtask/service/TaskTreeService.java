@@ -4,9 +4,9 @@ import cl.prezdev.jtask.model.Task;
 import cl.prezdev.util.gui.jtree.JTreeService;
 import javax.swing.JTree;
 
-public class JTaskTreeService extends JTreeService<Task>{
+public class TaskTreeService extends JTreeService<Task>{
     
-    public JTaskTreeService(JTree jtree) {
+    public TaskTreeService(JTree jtree) {
         super(jtree);
     }
     
@@ -28,4 +28,5 @@ public class JTaskTreeService extends JTreeService<Task>{
         selectedNode.setDone(false);
         super.updateUI();
     }
+    
 }

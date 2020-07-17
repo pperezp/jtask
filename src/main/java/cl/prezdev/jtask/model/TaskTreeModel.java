@@ -5,7 +5,6 @@ import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreePath;
 
 public class TaskTreeModel implements TreeModel{
-    
     private Task root;
 
     public TaskTreeModel(Task root) {
